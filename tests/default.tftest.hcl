@@ -270,3 +270,30 @@ run "us_east1_a_test_production" {
     error_message = "Expected a for us-east1-a-test-production workspace"
   }
 }
+
+run "broken-workspace" {
+  command = apply
+
+  module {
+    source = "./tests/fixtures/default"
+  }
+
+  variables {
+    workspace = "broken-workspace"
+  }
+
+  assert {
+    condition     = output.environment == null
+    error_message = "Expected null for broken-workspace workspace"
+  }
+
+  assert {
+    condition     = output.region == null
+    error_message = "Expected null for broken-workspace workspace"
+  }
+
+  assert {
+    condition     = output.zone == null
+    error_message = "Expected null for broken-workspace workspace"
+  }
+}

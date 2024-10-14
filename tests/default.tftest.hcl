@@ -297,3 +297,8 @@ run "broken-workspace" {
     error_message = "Expected null for broken-workspace workspace"
   }
 }
+
+variables {
+  repository = "mock-repository"
+  team       = "mock-team"
+}

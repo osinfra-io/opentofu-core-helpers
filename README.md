@@ -85,13 +85,16 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_workspace"></a> [workspace](#input\_workspace) | The workspace to use for the Terraform run | `string` | `null` | no |
+| <a name="input_repository"></a> [repository](#input\_repository) | The repository name | `string` | n/a | yes |
+| <a name="input_team"></a> [team](#input\_team) | The team name | `string` | n/a | yes |
+| <a name="input_workspace"></a> [workspace](#input\_workspace) | This is used for tests to set the workspace name. Do not set this variable in any other context | `string` | `null` | no |
 
 ### Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_environment"></a> [environment](#output\_environment) | n/a |
+| <a name="output_labels"></a> [labels](#output\_labels) | n/a |
 | <a name="output_region"></a> [region](#output\_region) | n/a |
 | <a name="output_zone"></a> [zone](#output\_zone) | n/a |
 <!-- END_TF_DOCS -->

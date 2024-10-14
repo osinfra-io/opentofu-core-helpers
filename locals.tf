@@ -15,8 +15,9 @@ locals {
   labels = {
     environment = local.environment
     region      = local.region
-    # team        = local.team
-    zone = local.zone
+    repository  = var.repository
+    team        = var.team
+    zone        = local.zone != null ? "${local.region}-${local.zone}" : local.region
   }
 
   parsed_workspace = (
@@ -27,21 +28,17 @@ locals {
 
       environment = "mock-environment"
       region      = "mock-region"
-      # team        = "mock-team"
-      zone = "mock-zone"
+      zone        = "mock-zone"
     } :
     try(regex(local.workspace_regex, local.workspace),
       {
         environment = null
         region      = null
-        # team        = null
-        zone = null
+        zone        = null
     })
   )
 
   region = local.parsed_workspace.region
-
-  # team = local.parsed_workspace.team
 
   workspace = var.workspace != null ? var.workspace : terraform.workspace
 

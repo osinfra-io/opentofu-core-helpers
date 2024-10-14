@@ -1,5 +1,7 @@
 module "core_workspace" {
   source = "../../../"
 
-  workspace = var.workspace
+  repository = var.repository
+  team       = var.team
+  workspace  = var.workspace
 }

@@ -1,4 +1,4 @@
-# <img align="left" width="45" height="45" src="https://user-images.githubusercontent.com/1610100/198844818-02e68cb6-f6cc-4747-bf38-cd458a133628.png"> Terraform Core - Workspace Terraform Module
+# <img align="left" width="45" height="45" src="https://github.com/user-attachments/assets/5297c02c-c310-4e26-9d8f-3dc71995575a"> Terraform Core - Workspace Terraform Module
 
 **[GitHub Actions](https://github.com/osinfra-io/terraform-core-workspace/actions):**
 

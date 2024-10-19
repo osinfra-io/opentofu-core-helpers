@@ -4,15 +4,9 @@
 
 [![Terraform Tests](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/dependabot.yml)
 
-**[Infracost](https://www.infracost.io):**
-
-[![infracost](https://img.shields.io/endpoint?url=https://dashboard.api.infracost.io/shields/json/cbeecfe3-576f-4553-984c-e451a575ee47/repos/00c5bd62-c59f-44f6-8583-5632a43182fd/branch/65062ab7-4e16-4e82-ba22-22c03a84f6fc)](https://dashboard.infracost.io/org/osinfra-io/repos/00c5bd62-c59f-44f6-8583-5632a43182fd?tab=settings)
-
-💵 Monthly estimates based on Infracost baseline costs.
-
 ## Repository Description
 
-Terraform **example** module for extracting workspace information.
+Terraform **example** module for extracting workspace information and generating labels for resources.
 
 > [!NOTE]
 > We do not recommend consuming this module like you might a [public module](https://registry.terraform.io/browse/modules). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.

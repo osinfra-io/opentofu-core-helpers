@@ -30,12 +30,11 @@ locals {
       region      = "mock-region"
       zone        = "mock-zone"
     } :
-    try(regex(local.workspace_regex, local.workspace),
-      {
-        environment = null
-        region      = null
-        zone        = null
-    })
+    {
+      environment = try(regex(local.environment_regex, local.workspace)[0], null)
+      region      = try(regex(local.region_regex, local.workspace)[0], null)
+      zone        = try(regex(local.zone_regex, local.workspace)[0], null)
+    }
   )
 
   region = local.parsed_workspace.region
@@ -52,7 +51,9 @@ locals {
   # us-west1-a-sandbox -> region = us-west1, zone = a, environment = sandbox
   # us-west1-a-foo-sandbox -> region = us-west1, zone = a, environment = sandbox
 
-  workspace_regex = "^(?:(?P<region>us-[a-z]+\\d+)(?:-(?P<zone>[abcd]))?(?:-[a-zA-Z0-9-]+)?|[a-zA-Z0-9-]+)-(?P<environment>sandbox|non-production|production)$"
+  environment_regex = "-(non-production|sandbox|production)$"
+  region_regex      = "^(us-[a-z]+\\d+)"
+  zone_regex        = "^us-[a-z]+\\d+-([abcd])"
 
   zone = local.parsed_workspace.zone
 }

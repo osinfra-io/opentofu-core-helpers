@@ -87,9 +87,9 @@ No resources.
 |------|-------------|------|---------|:--------:|
 | <a name="input_cost_center"></a> [cost\_center](#input\_cost\_center) | The cost center the resources will be billed to, must start with 'x' followed by three or four digits | `string` | n/a | yes |
 | <a name="input_data_classification"></a> [data\_classification](#input\_data\_classification) | The data classification of the resources can be public, internal, or confidential | `string` | n/a | yes |
-| <a name="input_email"></a> [email](#input\_email) | The email address of the the team responsible for the resources | `string` | n/a | yes |
-| <a name="input_repository"></a> [repository](#input\_repository) | The repository name | `string` | n/a | yes |
-| <a name="input_team"></a> [team](#input\_team) | The team name | `string` | n/a | yes |
+| <a name="input_email"></a> [email](#input\_email) | The email address of the team responsible for the resources | `string` | n/a | yes |
+| <a name="input_repository"></a> [repository](#input\_repository) | The repository name (should be in the format 'owner/repo') containing only lowercase alphanumeric characters or hyphens | `string` | n/a | yes |
+| <a name="input_team"></a> [team](#input\_team) | The team name (should contain only lowercase alphanumeric characters and hyphens) | `string` | n/a | yes |
 | <a name="input_workspace"></a> [workspace](#input\_workspace) | This is used for tests to set the workspace name. Do not set this variable in any other context | `string` | `null` | no |
 
 ### Outputs

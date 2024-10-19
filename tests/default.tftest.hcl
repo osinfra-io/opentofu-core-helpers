@@ -302,6 +302,6 @@ variables {
   cost_center         = "mock-cost-center"
   data_classification = "mock-data-classification"
   email               = "mock-team@osinfra.io"
-  repository          = "mock-repository"
+  repository          = "mock-owner/mock-repository"
   team                = "mock-team"
 }

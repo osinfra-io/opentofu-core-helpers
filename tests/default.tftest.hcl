@@ -299,6 +299,9 @@ run "broken-workspace" {
 }
 
 variables {
-  repository = "mock-repository"
-  team       = "mock-team"
+  cost_center         = "mock-cost-center"
+  data_classification = "mock-data-classification"
+  email               = "mock-team@osinfra.io"
+  repository          = "mock-repository"
+  team                = "mock-team"
 }

@@ -13,11 +13,15 @@ locals {
   environment = local.parsed_workspace.environment
 
   labels = {
-    environment = local.environment
-    region      = local.region
-    repository  = var.repository
-    team        = var.team
-    zone        = local.zone != null ? "${local.region}-${local.zone}" : local.region
+    # Datadog expects the label env for unified service tagging
+    env                 = local.environment
+    cost-center         = var.cost_center
+    data-classification = var.data_classification
+    email               = var.email
+    region              = local.region
+    repository          = var.repository
+    team                = var.team
+    zone                = local.zone != null ? "${local.region}-${local.zone}" : local.region
   }
 
   parsed_workspace = (

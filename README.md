@@ -1,12 +1,12 @@
-# <img align="left" width="45" height="45" src="https://github.com/user-attachments/assets/5297c02c-c310-4e26-9d8f-3dc71995575a"> Terraform Core - Workspace Terraform Module
+# <img align="left" width="45" height="45" src="https://github.com/user-attachments/assets/5297c02c-c310-4e26-9d8f-3dc71995575a"> Terraform Core - Helpers Terraform Module
 
-**[GitHub Actions](https://github.com/osinfra-io/terraform-core-workspace/actions):**
+**[GitHub Actions](https://github.com/osinfra-io/terraform-core-helpers/actions):**
 
-[![Terraform Tests](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/terraform-core-workspace/actions/workflows/dependabot.yml)
+[![Terraform Tests](https://github.com/osinfra-io/terraform-core-helpers/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/terraform-core-helpers/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/terraform-core-helpers/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/terraform-core-helpers/actions/workflows/dependabot.yml)
 
 ## Repository Description
 
-Terraform **example** module for extracting workspace information and generating labels for resources.
+Terraform **example** module for helpers, supports extracting workspace information and generating labels for resources.
 
 > [!NOTE]
 > We do not recommend consuming this module like you might a [public module](https://registry.terraform.io/browse/modules). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.
@@ -41,10 +41,6 @@ Links to documentation and other resources required to develop and iterate in th
 ### 🔍 Tests
 
 All tests are [mocked](https://developer.hashicorp.com/terraform/language/tests/mocking) allowing us to test the module without creating infrastructure or requiring credentials. The trade-offs are acceptable in favor of speed and simplicity. In a Terraform test, a mocked provider or resource will generate fake data for all computed attributes that would normally be provided by the underlying provider APIs.
-
-```none
-cd fixtures/default
-```
 
 ```none
 terraform init

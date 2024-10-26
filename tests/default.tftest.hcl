@@ -55,6 +55,33 @@ run "main_sandbox" {
   }
 }
 
+run "us_east1_sandbox" {
+  command = apply
+
+  module {
+    source = "./tests/fixtures/default"
+  }
+
+  variables {
+    workspace = "us-east1-sandbox"
+  }
+
+  assert {
+    condition     = output.environment == "sandbox"
+    error_message = "Expected sandbox for us-east1-sandbox workspace"
+  }
+
+  assert {
+    condition     = output.region == "us-east1"
+    error_message = "Expected us-east1 for us-east1-sandbox workspace"
+  }
+
+  assert {
+    condition     = output.zone == null
+    error_message = "Expected null for us-east1-sandbox workspace"
+  }
+}
+
 run "us_east1_a_sandbox" {
   command = apply
 
@@ -109,7 +136,7 @@ run "us_east1_a_test_sandbox" {
   }
 }
 
-run "main_non-production" {
+run "main_non_production" {
   command = apply
 
   module {
@@ -136,7 +163,34 @@ run "main_non-production" {
   }
 }
 
-run "us_east1_a_non-production" {
+run "us_east1_non_production" {
+  command = apply
+
+  module {
+    source = "./tests/fixtures/default"
+  }
+
+  variables {
+    workspace = "us-east1-non-production"
+  }
+
+  assert {
+    condition     = output.environment == "non-production"
+    error_message = "Expected non-production for us-east1-non-production workspace"
+  }
+
+  assert {
+    condition     = output.region == "us-east1"
+    error_message = "Expected us-east1 for us-east1-non-production workspace"
+  }
+
+  assert {
+    condition     = output.zone == null
+    error_message = "Expected null for us-east1-non-production workspace"
+  }
+}
+
+run "us_east1_a_non_production" {
   command = apply
 
   module {
@@ -163,7 +217,7 @@ run "us_east1_a_non-production" {
   }
 }
 
-run "us_east1_a_test_non-production" {
+run "us_east1_a_test_non_production" {
   command = apply
 
   module {
@@ -216,6 +270,34 @@ run "main_production" {
     error_message = "Expected null for main-production workspace"
   }
 }
+
+run "us_east1_production" {
+  command = apply
+
+  module {
+    source = "./tests/fixtures/default"
+  }
+
+  variables {
+    workspace = "us-east1-production"
+  }
+
+  assert {
+    condition     = output.environment == "production"
+    error_message = "Expected production for us-east1-production workspace"
+  }
+
+  assert {
+    condition     = output.region == "us-east1"
+    error_message = "Expected us-east1 for us-east1-production workspace"
+  }
+
+  assert {
+    condition     = output.zone == null
+    error_message = "Expected null for us-east1-production workspace"
+  }
+}
+
 
 run "us_east1_a_production" {
   command = apply

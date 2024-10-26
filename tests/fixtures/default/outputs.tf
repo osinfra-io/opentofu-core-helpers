@@ -1,6 +1,10 @@
 # Terraform Output Values
 # https://www.terraform.io/language/values/outputs
 
+output "env" {
+  value = module.core_workspace.env
+}
+
 output "environment" {
   value = module.core_workspace.environment
 }

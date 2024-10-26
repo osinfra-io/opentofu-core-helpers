@@ -186,7 +186,7 @@ run "us_east1_non_production" {
 
   assert {
     condition     = output.zone == null
-    error_message = "Expected a for us-east1-non-production workspace"
+    error_message = "Expected null for us-east1-non-production workspace"
   }
 }
 
@@ -294,7 +294,7 @@ run "us_east1_production" {
 
   assert {
     condition     = output.zone == null
-    error_message = "Expected a for us-east1-production workspace"
+    error_message = "Expected null for us-east1-production workspace"
   }
 }
 

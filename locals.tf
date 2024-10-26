@@ -7,10 +7,10 @@ locals {
 
   # Examples:
   # main-sandbox -> region = null, zone = null, environment = sandbox
-  # us-west1-sandbox -> region = us-west1, zone = null, environment = sandbox
-  # us-west1-foo-sandbox -> region = us-west1, zone = null, environment = sandbox
-  # us-west1-a-sandbox -> region = us-west1, zone = a, environment = sandbox
-  # us-west1-a-foo-sandbox -> region = us-west1, zone = a, environment = sandbox
+  # us-east1-sandbox -> region = us-east1, zone = null, environment = sandbox
+  # us-east1-foo-sandbox -> region = us-east1, zone = null, environment = sandbox
+  # us-east1-a-sandbox -> region = us-east1, zone = a, environment = sandbox
+  # us-east1-a-foo-sandbox -> region = us-east1, zone = a, environment = sandbox
 
   environment_regex = "-(non-production|sandbox|production)$"
   region_regex      = "^(us-[a-z]+\\d+)"
@@ -28,7 +28,7 @@ locals {
 
   labels = {
 
-    # Datadog expects the label env for unified service tagging
+    # Datadog expects the label env for unified service tagging otherwise we'd use the full name of environment.
 
     env                 = local.environment
     cost-center         = var.cost_center
@@ -37,14 +37,14 @@ locals {
     region              = local.region
     repository          = var.repository
     team                = var.team
-    zone                = local.zone != null ? "${local.region}-${local.zone}" : local.region
+    zone                = local.zone != null ? "${local.region}-${local.zone}" : null
   }
 
   parsed_workspace = (
     local.workspace == "default" ?
     {
 
-      # We use mock providers when testing Terraform child modules, these values align with the test naming conventions
+      # We use mock providers when testing Terraform child modules, these values align with the test naming conventions.
 
       environment = "mock-environment"
       region      = "mock-region"
@@ -58,7 +58,6 @@ locals {
   )
 
   region = local.parsed_workspace.region
-
 
   workspace = var.workspace != null ? var.workspace : terraform.workspace
   zone      = local.parsed_workspace.zone

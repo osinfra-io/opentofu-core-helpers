@@ -33,7 +33,6 @@ locals {
     env                 = local.environment
     cost-center         = var.cost_center
     data-classification = var.data_classification
-    email               = var.email
     region              = local.region
     repository          = var.repository
     team                = var.team

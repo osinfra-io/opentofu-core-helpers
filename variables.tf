@@ -21,23 +21,13 @@ variable "data_classification" {
   }
 }
 
-variable "email" {
-  description = "The email address of the team responsible for the resources"
-  type        = string
-
-  validation {
-    condition     = can(regex("^[a-zA-Z0-9._%+-]+@osinfra\\.io$", var.email))
-    error_message = "The email address must be a valid osinfra.io email address"
-  }
-}
-
 variable "repository" {
-  description = "The repository name (should be in the format 'owner/repo') containing only lowercase alphanumeric characters or hyphens"
+  description = "The repository name containing only lowercase alphanumeric characters or hyphens"
   type        = string
 
   validation {
-    condition     = can(regex("^[a-z0-9-]+/[a-z0-9-]+$", var.repository))
-    error_message = "The repository name should be in the format 'owner/repo' and contain only lowercase alphanumeric characters or hyphens"
+    condition     = can(regex("^[a-z0-9-]+$", var.repository))
+    error_message = "The repository name must consist entirely of lowercase alphanumeric characters or hyphens"
   }
 }
 

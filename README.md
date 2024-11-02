@@ -85,9 +85,13 @@ No resources.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_cost_center"></a> [cost\_center](#output\_cost\_center) | The cost center the resources will be billed to |
+| <a name="output_data_classification"></a> [data\_classification](#output\_data\_classification) | The data classification of the resources |
 | <a name="output_env"></a> [env](#output\_env) | The short name for the environment for example prod, nonprod, sb |
 | <a name="output_environment"></a> [environment](#output\_environment) | The environment name for example production, non-production, sandbox |
 | <a name="output_labels"></a> [labels](#output\_labels) | A map of labels to apply to resources |
 | <a name="output_region"></a> [region](#output\_region) | The region where resources will be deployed |
+| <a name="output_repository"></a> [repository](#output\_repository) | The repository name |
+| <a name="output_team"></a> [team](#output\_team) | The team name |
 | <a name="output_zone"></a> [zone](#output\_zone) | The zone where resources will be deployed |
 <!-- END_TF_DOCS -->

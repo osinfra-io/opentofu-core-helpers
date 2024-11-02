@@ -26,8 +26,8 @@ variable "repository" {
   type        = string
 
   validation {
-    condition     = can(regex("[a-z0-9-]+$", var.repository))
-    error_message = "The repository name should contain only lowercase alphanumeric characters or hyphens"
+    condition     = can(regex("^[a-z0-9-]+$", var.repository))
+    error_message = "The repository name must consist entirely of lowercase alphanumeric characters or hyphens"
   }
 }
 

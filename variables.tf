@@ -22,12 +22,12 @@ variable "data_classification" {
 }
 
 variable "repository" {
-  description = "The repository name (should be in the format 'owner/repo') containing only lowercase alphanumeric characters or hyphens"
+  description = "The repository name containing only lowercase alphanumeric characters or hyphens"
   type        = string
 
   validation {
-    condition     = can(regex("^[a-z0-9-]+/[a-z0-9-]+$", var.repository))
-    error_message = "The repository name should be in the format 'owner/repo' and contain only lowercase alphanumeric characters or hyphens"
+    condition     = can(regex("[a-z0-9-]+$", var.repository))
+    error_message = "The repository name should contain only lowercase alphanumeric characters or hyphens"
   }
 }
 

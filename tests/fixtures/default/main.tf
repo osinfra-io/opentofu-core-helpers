@@ -1,5 +1,5 @@
-module "core_workspace" {
-  source = "../../../"
+module "core_helpers_root" {
+  source = "../../../root"
 
   cost_center         = var.cost_center
   data_classification = var.data_classification

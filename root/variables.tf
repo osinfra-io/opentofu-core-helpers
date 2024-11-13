@@ -40,9 +40,3 @@ variable "team" {
     error_message = "The team name should contain only lowercase alphanumeric characters and hyphens"
   }
 }
-
-variable "workspace" {
-  description = "This is used for tests to set the workspace name. Do not set this variable in any other context"
-  type        = string
-  default     = null
-}

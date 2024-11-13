@@ -1,5 +1,4 @@
-# Local Values
-# https://www.terraform.io/docs/language/values/locals.html
+# Terraform Core Child Module Helpers
 
 locals {
   # The regex is used to parse the workspace name into its components, the components are used to set the region, zone, and environment variables.
@@ -26,19 +25,6 @@ locals {
 
   environment = local.parsed_workspace.environment
 
-  labels = {
-
-    # Datadog expects the label env for unified service tagging otherwise we'd use the full name of environment.
-
-    env                 = local.environment
-    cost-center         = var.cost_center
-    data-classification = var.data_classification
-    region              = local.region
-    repository          = var.repository
-    team                = var.team
-    zone                = local.zone != null ? "${local.region}-${local.zone}" : null
-  }
-
   parsed_workspace = (
     local.workspace == "default" ?
     {
@@ -60,4 +46,30 @@ locals {
 
   workspace = var.workspace != null ? var.workspace : terraform.workspace
   zone      = local.parsed_workspace.zone
+}
+
+output "env" {
+  description = "The short name for the environment for example prod, nonprod, sb"
+  value       = local.env
+}
+
+output "environment" {
+  description = "The environment name for example production, non-production, sandbox"
+  value       = local.environment
+}
+
+output "region" {
+  description = "The region where resources will be deployed"
+  value       = local.region
+}
+
+output "zone" {
+  description = "The zone where resources will be deployed"
+  value       = local.zone
+}
+
+variable "workspace" {
+  description = "This is used for tests to set the workspace name. Do not set this variable in any other context"
+  type        = string
+  default     = null
 }

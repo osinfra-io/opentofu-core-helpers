@@ -9,10 +9,6 @@ variable "data_classification" {
   type = string
 }
 
-variable "email" {
-  type = string
-}
-
 variable "repository" {
   type = string
 }

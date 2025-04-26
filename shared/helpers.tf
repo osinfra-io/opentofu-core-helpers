@@ -7,9 +7,9 @@ locals {
   # Examples:
   # main-sandbox -> region = null, zone = null, environment = sandbox
   # us-east1-sandbox -> region = us-east1, zone = null, environment = sandbox
-  # us-east1-foo-sandbox -> region = us-east1, zone = null, environment = sandbox
+  # us-east1-foo-sandbox -> region = us-east1, zone = null, system = foo, environment = sandbox
   # us-east1-a-sandbox -> region = us-east1, zone = a, environment = sandbox
-  # us-east1-a-foo-sandbox -> region = us-east1, zone = a, environment = sandbox
+  # us-east1-a-foo-sandbox -> region = us-east1, zone = a, system = foo, environment = sandbox
 
   environment_regex = "-(non-production|sandbox|production)$"
   region_regex      = "^(us-[a-z]+\\d+)"

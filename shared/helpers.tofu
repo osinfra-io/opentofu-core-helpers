@@ -1,4 +1,4 @@
-# Terraform Core Child Module Helpers
+# OpenTofu Core Child Module Helpers
 
 locals {
   # The regex is used to parse the workspace name into its components, the components are used to set the region, zone, and environment variables.
@@ -29,7 +29,7 @@ locals {
     local.workspace == "default" ?
     {
 
-      # We use mock providers when testing Terraform child modules, these values align with the test naming conventions.
+      # We use mock providers when testing OpenTofu child modules, these values align with the test naming conventions.
 
       environment = "mock-environment"
       region      = "mock-region"

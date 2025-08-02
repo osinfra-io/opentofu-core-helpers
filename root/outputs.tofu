@@ -1,5 +1,5 @@
-# Terraform Output Values
-# https://www.terraform.io/language/values/outputs
+# Output Values
+# https://opentofu.org/docs/language/values/outputs
 
 output "cost_center" {
   description = "The cost center the resources will be billed to"

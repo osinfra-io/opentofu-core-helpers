@@ -1,5 +1,5 @@
 # Input Variables
-# https://www.terraform.io/language/values/variables
+# https://opentofu.org/docs/language/values/variables
 
 variable "cost_center" {
   description = "The cost center the resources will be billed to, must start with 'x' followed by three or four digits"

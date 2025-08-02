@@ -1,5 +1,5 @@
-# Terraform Output Values
-# https://www.terraform.io/language/values/outputs
+# Output Values
+# https://opentofu.org/docs/language/values/outputs
 
 output "env" {
   value = module.core_helpers_root.env

@@ -50,6 +50,15 @@ tofu init
 tofu test
 ```
 
+### 📦 Release
+
+To release a new version, simply push a new tag to the repository. The tag should be in the format `vX.Y.Z` where `X`, `Y`, and `Z` are integers.
+
+```none
+git tag vX.Y.Z
+git push origin vX.Y.Z
+```
+
 ## 📓 OpenTofu Documentation
 
 > A child module automatically inherits default (un-aliased) provider configurations from its parent. The provider versions below are informational only and do **not** need to align with the provider configurations from its parent.

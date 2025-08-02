@@ -18,7 +18,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.ref_name }}
         run: |
-          gh release create $TAG \
+          # Validate that TAG matches the expected pattern: v followed by numbers, dots, and hyphens
+          if ! [[ "$TAG" =~ ^v[0-9A-Za-z._-]+$ ]]; then
+            echo "Error: TAG '$TAG' does not match expected pattern 'v[0-9A-Za-z._-]+'"
+            exit 1
+          fi
+          gh release create "$TAG" \
             --repo "${{ github.repository }}" \
             --title "${TAG#v}" \
             --generate-notes

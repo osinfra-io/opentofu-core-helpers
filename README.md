@@ -24,17 +24,19 @@ Our focus is on the core fundamental practice of platform engineering, Infrastru
 
 To avoid slowing down stream-aligned teams, we want to open up the possibility for contributions. The Open Source Infrastructure (as Code) model allows team members external to the platform team to contribute with only a slight increase in cognitive load. This section is for developers who want to contribute to this repository, describing the tools used, the skills, and the knowledge required, along with OpenTofu documentation.
 
-See the documentation for setting up a local development environment [here](https://docs.osinfra.io/fundamentals/development-setup).
+See the [documentation](https://docs.osinfra.io/fundamentals/development-setup) for setting up a local development environment.
 
 ### 🛠️ Tools
 
-- [infracost](https://github.com/infracost/infracost)
 - [osinfra-pre-commit-hooks](https://github.com/osinfra-io/pre-commit-hooks)
 - [pre-commit](https://github.com/pre-commit/pre-commit)
 
 ### 📋 Skills and Knowledge
 
 Links to documentation and other resources required to develop and iterate in this repository successfully.
+
+- [opentofu](https://opentofu.org/docs)
+  - [workspace-interpolation](https://opentofu.org/docs/language/state/workspaces#current-workspace-interpolation)
 
 ### 🔍 Tests
 

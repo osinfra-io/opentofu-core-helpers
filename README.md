@@ -1,4 +1,4 @@
-# <img align="left" width="45" height="45" src="https://github.com/user-attachments/assets/5297c02c-c310-4e26-9d8f-3dc71995575a"> OpenTofu Core - Helpers OpenTofu Module
+# <img align="left" width="45" height="45" src="https://github.com/user-attachments/assets/7a8da619-5b2c-4ad0-a8be-e1eded7e7061"> OpenTofu Core - Helpers OpenTofu Module
 
 **[GitHub Actions](https://github.com/osinfra-io/opentofu-core-helpers/actions):**
 

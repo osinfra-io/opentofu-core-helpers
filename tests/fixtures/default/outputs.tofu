@@ -5,6 +5,10 @@ output "env" {
   value = module.core_helpers_root.env
 }
 
+output "env_folder" {
+  value = module.core_helpers_root.env_folder
+}
+
 output "environment" {
   value = module.core_helpers_root.environment
 }

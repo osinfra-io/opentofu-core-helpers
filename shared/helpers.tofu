@@ -12,10 +12,20 @@ locals {
   # us-east1-a-foo-sandbox -> region = us-east1, zone = a, system = foo, environment = sandbox
 
   environment_regex = "-(non-production|sandbox|production)$"
-  region_regex      = "^(us-[a-z]+\\d+)"
-  zone_regex        = "^us-[a-z]+\\d+-([abcd])"
+
+  # Google Cloud region regex - supports US and Europe regions
+  # US regions: us-central1, us-east1, us-east4, us-west1, us-west2, us-west3, us-west4
+  # Europe regions: europe-central2, europe-north1, europe-southwest1, europe-west1, europe-west2, europe-west3, europe-west4, europe-west6, europe-west8, europe-west9, europe-west10, europe-west12
+  # To add other regions: extend the regex pattern below
+  region_regex = "^(us-[a-z]+\\d+|europe-[a-z]+\\d+)"
+
+  # Google Cloud zone regex - supports all available zones (a, b, c, d, e, f)
+  zone_regex = "^(us-[a-z]+\\d+|europe-[a-z]+\\d+)-([abcdef])"
 
   env = local.environment != null ? lookup(local.env_map, local.environment, "none") : null
+
+  # Dynamic folder name generation using title() function
+  env_folder = local.environment != null ? title(replace(local.environment, "-", " ")) : null
 
   env_map = {
     "non-production" = "nonprod"
@@ -38,7 +48,7 @@ locals {
     {
       environment = try(regex(local.environment_regex, local.workspace)[0], null)
       region      = try(regex(local.region_regex, local.workspace)[0], null)
-      zone        = try(regex(local.zone_regex, local.workspace)[0], null)
+      zone        = try(regex(local.zone_regex, local.workspace)[1], null)
     }
   )
 
@@ -51,6 +61,11 @@ locals {
 output "env" {
   description = "The short name for the environment for example prod, nonprod, sb"
   value       = local.env
+}
+
+output "env_folder" {
+  description = "The title case environment name for folder naming, for example Non Production, Production, Sandbox"
+  value       = local.env_folder
 }
 
 output "environment" {

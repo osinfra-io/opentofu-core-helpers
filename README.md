@@ -6,12 +6,70 @@
 
 ## Repository Description
 
-OpenTofu **example** module for helpers, supports extracting workspace information and generating labels for resources.
+OpenTofu **example** module for helpers that provides core platform functionality including workspace parsing, resource labeling, and logos integration for team and project management.
+
+**Core Features:**
+
+- **Workspace Parsing**: Extracts environment, region, and zone from structured workspace names
+- **Resource Labels**: Generates consistent labels for resource tagging and organization
+- **Logos Integration**: Connects to logos remote state for team data, project naming, and folder IDs
+- **Multi-Workspace Support**: Aggregates team data across multiple logos workspaces
 
 > [!NOTE]
 > We do not recommend consuming this module like you might a [public module](https://search.opentofu.org). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.
 
 ## 🔩 Usage
+
+### Basic Usage (Workspace Parsing Only)
+
+```hcl
+module "helpers" {
+  source = "github.com/osinfra-io/opentofu-core-helpers//root"
+
+  cost_center         = "x001"
+  data_classification = "public"
+  repository          = "my-repository"
+  team                = "my-team"
+}
+
+# Access workspace parsing outputs
+output "environment" {
+  value = module.helpers.environment
+}
+
+output "labels" {
+  value = module.helpers.labels
+}
+```
+
+### With Logos Integration
+
+```hcl
+module "helpers" {
+  source = "github.com/osinfra-io/opentofu-core-helpers//root"
+
+  cost_center         = "x001"
+  data_classification = "public"
+  repository          = "my-repository"
+  team                = "my-team"
+
+  # Enable logos integration
+  logos_workspaces = ["my-team-main-production", "logos-main-production"]
+}
+
+# Access logos-integrated outputs
+output "project_naming" {
+  value = module.helpers.project_naming
+}
+
+output "environment_folder_id" {
+  value = module.helpers.environment_folder_id
+}
+
+output "teams" {
+  value = module.helpers.teams
+}
+```
 
 > [!TIP]
 > You can check the [tests/fixtures](tests/fixtures) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples on which to base your configurations.

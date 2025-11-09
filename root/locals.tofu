@@ -27,7 +27,7 @@ locals {
     zone                = local.zone != null ? "${local.region}-${local.zone}" : null
   }
 
-  # Project naming components matching logos_helper interface
+  # Project naming components for downstream consumption
   project_naming = local.team_data != null ? {
     description = lower(local.team_data.display_name)
     prefix      = local.team_prefix

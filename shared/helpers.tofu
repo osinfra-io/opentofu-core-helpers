@@ -1,4 +1,4 @@
-# OpenTofu Core Child Module Helpers
+# OpenTofu Core Root Module Helpers
 
 locals {
   # The regex is used to parse the workspace name into its components, the components are used to set the region, zone, and environment variables.

@@ -22,7 +22,7 @@ variable "data_classification" {
 }
 
 variable "logos_workspaces" {
-  description = "List of logos workspace names to read remote state from"
+  description = "List of logos workspace names to read remote state from for team data aggregation. When provided, enables logos integration features including team data lookup, project naming, and environment folder IDs. Example: ['corpus-main-production', 'logos-main-production']"
   type        = list(string)
   default     = null
 }

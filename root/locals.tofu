@@ -11,8 +11,8 @@ locals {
   # Environment folder ID for the current team and environment
   environment_folder_id = local.team_data != null && local.environment_key != null ? local.team_data.environments[local.environment_key] : null
 
-  # Environment key for logos lookup (title case with dashes replaced by spaces)
-  environment_key = local.environment != null ? title(replace(local.environment, "-", " ")) : null
+  # Environment key for logos lookup (title case keeping hyphens)
+  environment_key = local.environment != null ? title(local.environment) : null
 
   labels = {
 

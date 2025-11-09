@@ -41,11 +41,8 @@ variable "team" {
   }
 }
 
-variable "logos_remote_state_config" {
-  description = "Configuration for accessing logos remote state"
-  type = object({
-    backend = string
-    config  = map(string)
-  })
-  default = null
+variable "logos_workspaces" {
+  description = "List of logos workspace names to read remote state from"
+  type        = list(string)
+  default     = null
 }

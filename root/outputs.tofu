@@ -45,3 +45,8 @@ output "team_prefix" {
   description = "Team type prefix extracted from team key (e.g., 'pt', 'st', 'cst', 'et')"
   value       = local.team_prefix
 }
+
+output "teams" {
+  description = "All teams data from logos workspaces"
+  value       = local.all_teams
+}

@@ -3,7 +3,23 @@
 
 locals {
   # Logos functionality - parse team data from remote state when available
-  team_data = var.logos_remote_state_config != null ? data.terraform_remote_state.logos[0].outputs.teams[var.team] : null
+  # Find the workspace that contains our team data
+  team_data = var.logos_workspaces != null ? (
+    try(
+      # Look for our team in each workspace
+      [for workspace_name, workspace_data in data.terraform_remote_state.logos :
+        workspace_data.outputs.teams[var.team]
+        if contains(keys(workspace_data.outputs.teams), var.team)
+      ][0],
+      null
+    )
+  ) : null
+
+  # Aggregate all teams data from all logos workspaces
+  all_teams = var.logos_workspaces != null ? merge([
+    for workspace_name, workspace_data in data.terraform_remote_state.logos :
+    workspace_data.outputs.teams
+  ]...) : {}
 
   # Extract team key from team variable
   team_key = var.team

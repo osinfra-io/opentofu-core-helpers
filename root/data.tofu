@@ -3,8 +3,10 @@
 
 # Access logos remote state when configuration is provided
 data "terraform_remote_state" "logos" {
-  count = var.logos_remote_state_config != null ? 1 : 0
+  for_each = var.logos_workspaces != null ? toset(var.logos_workspaces) : toset([])
 
-  backend = var.logos_remote_state_config.backend
-  config  = var.logos_remote_state_config.config
+  backend = "local"
+  config = {
+    path = "../pt-logos/terraform.tfstate.d/${each.key}/terraform.tfstate"
+  }
 }

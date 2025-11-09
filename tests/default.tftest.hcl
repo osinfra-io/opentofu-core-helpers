@@ -318,11 +318,6 @@ run "main_non_production" {
   }
 
   assert {
-    condition     = output.env_folder == "Non Production"
-    error_message = "Expected Non Production for main-non-production workspace"
-  }
-
-  assert {
     condition     = output.region == null
     error_message = "Expected null for main-non-production workspace"
   }
@@ -350,11 +345,6 @@ run "main_production" {
   }
 
   assert {
-    condition     = output.env_folder == "Production"
-    error_message = "Expected Production for main-production workspace"
-  }
-
-  assert {
     condition     = output.region == null
     error_message = "Expected null for main-production workspace"
   }
@@ -379,11 +369,6 @@ run "main_sandbox" {
   assert {
     condition     = output.environment == "sandbox"
     error_message = "Expected sandbox for main-sandbox workspace"
-  }
-
-  assert {
-    condition     = output.env_folder == "Sandbox"
-    error_message = "Expected Sandbox for main-sandbox workspace"
   }
 
   assert {

@@ -5,10 +5,6 @@ output "env" {
   value = module.core_helpers_root.env
 }
 
-output "env_folder" {
-  value = module.core_helpers_root.env_folder
-}
-
 output "environment" {
   value = module.core_helpers_root.environment
 }
@@ -23,4 +19,16 @@ output "region" {
 
 output "zone" {
   value = module.core_helpers_root.zone
+}
+
+output "environment_folder_id" {
+  value = module.core_helpers_root.environment_folder_id
+}
+
+output "project_naming" {
+  value = module.core_helpers_root.project_naming
+}
+
+output "team_key" {
+  value = module.core_helpers_root.team_key
 }

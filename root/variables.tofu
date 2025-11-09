@@ -40,3 +40,12 @@ variable "team" {
     error_message = "The team name should contain only lowercase alphanumeric characters and hyphens"
   }
 }
+
+variable "logos_remote_state_config" {
+  description = "Configuration for accessing logos remote state"
+  type = object({
+    backend = string
+    config  = map(string)
+  })
+  default = null
+}

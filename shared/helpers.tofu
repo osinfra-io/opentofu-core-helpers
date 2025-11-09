@@ -24,9 +24,6 @@ locals {
 
   env = local.environment != null ? lookup(local.env_map, local.environment, "none") : null
 
-  # Dynamic folder name generation using title() function
-  env_folder = local.environment != null ? title(replace(local.environment, "-", " ")) : null
-
   env_map = {
     "non-production" = "nonprod"
     "production"     = "prod"
@@ -61,11 +58,6 @@ locals {
 output "env" {
   description = "The short name for the environment for example prod, nonprod, sb"
   value       = local.env
-}
-
-output "env_folder" {
-  description = "The title case environment name for folder naming, for example Non Production, Production, Sandbox"
-  value       = local.env_folder
 }
 
 output "environment" {

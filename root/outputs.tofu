@@ -25,3 +25,23 @@ output "team" {
   description = "The team name"
   value       = var.team
 }
+
+output "environment_folder_id" {
+  description = "The folder ID for the current team and environment from logos state"
+  value       = local.environment_folder_id
+}
+
+output "project_naming" {
+  description = "The project naming configuration from logos state"
+  value       = local.project_naming
+}
+
+output "team_key" {
+  description = "The team key (same as team for consistency)"
+  value       = local.team_key
+}
+
+output "team_prefix" {
+  description = "Team type prefix extracted from team key (e.g., 'pt', 'st', 'cst', 'et')"
+  value       = local.team_prefix
+}

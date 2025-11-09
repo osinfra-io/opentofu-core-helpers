@@ -21,6 +21,12 @@ variable "data_classification" {
   }
 }
 
+variable "logos_workspaces" {
+  description = "List of logos workspace names to read remote state from"
+  type        = list(string)
+  default     = null
+}
+
 variable "repository" {
   description = "The repository name containing only lowercase alphanumeric characters or hyphens"
   type        = string
@@ -39,10 +45,4 @@ variable "team" {
     condition     = can(regex("^[a-z0-9-]+$", var.team))
     error_message = "The team name should contain only lowercase alphanumeric characters and hyphens"
   }
-}
-
-variable "logos_workspaces" {
-  description = "List of logos workspace names to read remote state from"
-  type        = list(string)
-  default     = null
 }

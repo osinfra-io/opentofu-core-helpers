@@ -11,9 +11,19 @@ output "data_classification" {
   value       = var.data_classification
 }
 
+output "environment_folder_id" {
+  description = "The folder ID for the current team and environment from logos state"
+  value       = local.environment_folder_id
+}
+
 output "labels" {
   description = "A map of labels to apply to resources"
   value       = local.labels
+}
+
+output "project_naming" {
+  description = "The project naming configuration from logos state"
+  value       = local.project_naming
 }
 
 output "repository" {
@@ -24,16 +34,6 @@ output "repository" {
 output "team" {
   description = "The team name"
   value       = var.team
-}
-
-output "environment_folder_id" {
-  description = "The folder ID for the current team and environment from logos state"
-  value       = local.environment_folder_id
-}
-
-output "project_naming" {
-  description = "The project naming configuration from logos state"
-  value       = local.project_naming
 }
 
 output "team_key" {

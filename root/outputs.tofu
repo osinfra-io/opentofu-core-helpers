@@ -42,7 +42,7 @@ output "team_key" {
 }
 
 output "team_prefix" {
-  description = "Team type prefix extracted from team key (e.g., 'pt', 'st', 'cst', 'et')"
+  description = "Team type prefix extracted from team key (e.g., 'pt', 'st', 'ct', 'et')"
   value       = local.team_prefix
 }
 

@@ -50,11 +50,3 @@ output "teams" {
   description = "All teams data from logos workspaces"
   value       = local.all_teams
 }
-
-output "debug_remote_state_keys" {
-  description = "Debug: Available output keys in remote state"
-  value = var.logos_workspaces != null ? {
-    for workspace_name, workspace_data in data.terraform_remote_state.logos :
-    workspace_name => keys(workspace_data.outputs)
-  } : {}
-}

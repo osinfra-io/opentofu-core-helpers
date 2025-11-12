@@ -10,6 +10,6 @@ data "terraform_remote_state" "logos" {
   backend = "gcs"
   config = {
     bucket = "pt-logos-state-prod"
-    prefix = "pt-logos/${each.key}"
+    prefix = "pt-logos/${each.key}.tfstate"
   }
 }

@@ -5,7 +5,7 @@ locals {
   # Aggregate all teams data from all logos workspaces
   all_teams = var.logos_workspaces != null ? merge([
     for workspace_name, workspace_data in data.terraform_remote_state.logos :
-    workspace_data.outputs.teams
+    try(workspace_data.outputs.teams, {})
   ]...) : {}
 
   # Environment folder ID for the current team and environment
@@ -42,7 +42,7 @@ locals {
       # Look for our team in each workspace
       [for workspace_name, workspace_data in data.terraform_remote_state.logos :
         workspace_data.outputs.teams[var.team]
-        if contains(keys(workspace_data.outputs.teams), var.team)
+        if try(contains(keys(workspace_data.outputs.teams), var.team), false)
       ][0],
       null
     )

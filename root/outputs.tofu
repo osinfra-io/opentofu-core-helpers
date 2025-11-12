@@ -51,14 +51,10 @@ output "teams" {
   value       = local.all_teams
 }
 
-# Debug output to see what's in the remote state
-output "debug_remote_state" {
-  description = "Debug: Raw remote state outputs for troubleshooting"
+output "debug_remote_state_keys" {
+  description = "Debug: Available output keys in remote state"
   value = var.logos_workspaces != null ? {
     for workspace_name, workspace_data in data.terraform_remote_state.logos :
-    workspace_name => {
-      outputs_keys = keys(workspace_data.outputs)
-      outputs      = workspace_data.outputs
-    }
+    workspace_name => keys(workspace_data.outputs)
   } : {}
 }

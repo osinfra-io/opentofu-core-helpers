@@ -2,13 +2,14 @@
 # https://opentofu.org/docs/language/data-sources
 
 # Access logos remote state for team data and organizational information
-# Reads from local backend with hardcoded path structure for logos workspaces
+# Reads from GCS backend with workspace-based state file structure
 # Each workspace contains teams data, folder IDs, and project naming information
 data "terraform_remote_state" "logos" {
   for_each = var.logos_workspaces != null ? toset(var.logos_workspaces) : toset([])
 
-  backend = "local"
+  backend = "gcs"
   config = {
-    path = "../pt-logos/terraform.tfstate.d/${each.key}/terraform.tfstate"
+    bucket = "pt-logos-state-prod"
+    prefix = "pt-logos/${each.key}.tfstate"
   }
 }

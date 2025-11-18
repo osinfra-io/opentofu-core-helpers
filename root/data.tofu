@@ -9,7 +9,8 @@ data "terraform_remote_state" "logos" {
 
   backend = "gcs"
   config = {
-    bucket = "pt-logos-state-prod"
-    prefix = "pt-logos/${each.key}"
+    bucket         = "pt-logos-state-prod"
+    prefix         = "pt-logos/${each.key}"
+    encryption_key = var.state_kms_encryption_key
   }
 }

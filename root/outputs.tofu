@@ -50,20 +50,3 @@ output "teams" {
   description = "All teams data from logos workspaces"
   value       = local.all_teams
 }
-
-output "debug_team_lookup" {
-  description = "Debug: Team lookup information"
-  value = var.logos_workspaces != null ? {
-    looking_for_team = var.team
-    team_data_found  = local.team_data
-    all_teams_keys   = keys(local.all_teams)
-    raw_remote_state = {
-      for workspace_name, workspace_data in data.terraform_remote_state.logos :
-      workspace_name => {
-        output_keys = keys(workspace_data.outputs)
-        has_teams   = contains(keys(workspace_data.outputs), "teams")
-        teams_value = try(workspace_data.outputs.teams, "NOT_FOUND")
-      }
-    }
-  } : null
-}

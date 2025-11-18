@@ -50,3 +50,12 @@ output "teams" {
   description = "All teams data from logos workspaces"
   value       = local.all_teams
 }
+
+output "debug_team_lookup" {
+  description = "Debug: Team lookup information"
+  value = var.logos_workspaces != null ? {
+    looking_for_team = var.team
+    team_data_found  = local.team_data
+    all_teams_keys   = keys(local.all_teams)
+  } : null
+}

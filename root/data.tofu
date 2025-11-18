@@ -12,7 +12,7 @@ data "terraform_remote_state" "logos" {
     bucket = "pt-logos-state-prod"
     prefix = "pt-logos"
 
-    kms_encryption_key = var.state_kms_encryption_key
+    kms_encryption_key = "projects/pt-corpus-tf16-prod/locations/us/keyRings/state-encryption/cryptoKeys/default"
   }
 
   workspace = each.key

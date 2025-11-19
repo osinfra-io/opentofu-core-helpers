@@ -1,22 +1,3 @@
-terraform {
-  encryption {
-    key_provider "gcp_kms" "default" {
-      kms_encryption_key = "projects/pt-corpus-tf16-prod/locations/us/keyRings/state-encryption/cryptoKeys/default"
-      key_length         = 32
-    }
-
-    method "aes_gcm" "default" {
-      keys = key_provider.gcp_kms.default
-    }
-
-    remote_state_data_sources {
-      default {
-        method = method.aes_gcm.default
-      }
-    }
-  }
-}
-
 # Data Sources
 # https://opentofu.org/docs/language/data-sources
 

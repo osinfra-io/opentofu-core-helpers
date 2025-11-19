@@ -1,3 +1,28 @@
+terraform {
+  encryption {
+    key_provider "gcp_kms" "logos_state" {
+      kms_encryption_key = "projects/pt-corpus-tf16-prod/locations/us/keyRings/state-encryption/cryptoKeys/default"
+      key_length         = 32
+    }
+
+    method "aes_gcm" "logos_state" {
+      keys = key_provider.gcp_kms.logos_state
+    }
+
+    method "unencrypted" "migrate" {}
+
+    remote_state_data_sources {
+      default {
+        method = method.aes_gcm.logos_state
+
+        fallback {
+          method = method.unencrypted.migrate
+        }
+      }
+    }
+  }
+}
+
 # Data Sources
 # https://opentofu.org/docs/language/data-sources
 
@@ -9,9 +34,8 @@ data "terraform_remote_state" "logos" {
 
   backend = "gcs"
   config = {
-    bucket             = "pt-logos-state-prod"
-    kms_encryption_key = "projects/pt-corpus-tf16-prod/locations/us/keyRings/state-encryption/cryptoKeys/default"
-    prefix             = "pt-logos"
+    bucket = "pt-logos-state-prod"
+    prefix = "pt-logos"
   }
 
   workspace = each.key

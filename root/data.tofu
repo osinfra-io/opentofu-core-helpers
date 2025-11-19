@@ -9,10 +9,9 @@ data "terraform_remote_state" "logos" {
 
   backend = "gcs"
   config = {
-    bucket = "pt-logos-state-prod"
-    prefix = "pt-logos"
-
+    bucket             = "pt-logos-state-prod"
     kms_encryption_key = "projects/pt-corpus-tf16-prod/locations/us/keyRings/state-encryption/cryptoKeys/default"
+    prefix             = "pt-logos"
   }
 
   workspace = each.key

@@ -1,23 +1,17 @@
 terraform {
   encryption {
-    key_provider "gcp_kms" "logos_state" {
+    key_provider "gcp_kms" "default" {
       kms_encryption_key = "projects/pt-corpus-tf16-prod/locations/us/keyRings/state-encryption/cryptoKeys/default"
       key_length         = 32
     }
 
-    method "aes_gcm" "logos_state" {
-      keys = key_provider.gcp_kms.logos_state
+    method "aes_gcm" "default" {
+      keys = key_provider.gcp_kms.default
     }
-
-    method "unencrypted" "migrate" {}
 
     remote_state_data_sources {
       default {
-        method = method.aes_gcm.logos_state
-
-        fallback {
-          method = method.unencrypted.migrate
-        }
+        method = method.aes_gcm.default
       }
     }
   }

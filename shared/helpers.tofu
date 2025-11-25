@@ -48,12 +48,12 @@ locals {
   # To add other regions: extend the regex pattern below
   region_regex = "^(us-[a-z]+\\d+|europe-[a-z]+\\d+)"
 
+  # Google Cloud zone regex - supports all available zones (a, b, c, d, e, f)
+  zone_regex = "^(us-[a-z]+\\d+|europe-[a-z]+\\d+)-([abcdef])"
+
   workspace = var.workspace != null ? var.workspace : terraform.workspace
 
   zone = local.parsed_workspace.zone
-
-  # Google Cloud zone regex - supports all available zones (a, b, c, d, e, f)
-  zone_regex = "^(us-[a-z]+\\d+|europe-[a-z]+\\d+)-([abcdef])"
 }
 
 output "env" {

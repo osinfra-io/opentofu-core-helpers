@@ -8,6 +8,7 @@ data "terraform_remote_state" "logos" {
   for_each = var.logos_workspaces != null ? toset(var.logos_workspaces) : toset([])
 
   backend = "gcs"
+
   config = {
     bucket = "pt-logos-state-prod"
     prefix = "pt-logos"

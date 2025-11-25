@@ -15,9 +15,7 @@ locals {
   environment_key = local.environment != null ? title(local.environment) : null
 
   labels = {
-
     # Datadog expects the label env for unified service tagging otherwise we'd use the full name of environment.
-
     cost-center         = var.cost_center
     data-classification = var.data_classification
     env                 = local.environment
@@ -37,15 +35,13 @@ locals {
 
   # Logos functionality - parse team data from remote state when available
   # Find the workspace that contains our team data
-  team_data = var.logos_workspaces != null ? (
-    try(
-      # Look for our team in each workspace
-      [for workspace_name, workspace_data in data.terraform_remote_state.logos :
-        workspace_data.outputs.teams[var.team]
-        if try(contains(keys(workspace_data.outputs.teams), var.team), false)
-      ][0],
-      null
-    )
+  team_data = var.logos_workspaces != null ? try(
+    # Look for our team in each workspace
+    [for workspace_name, workspace_data in data.terraform_remote_state.logos :
+      workspace_data.outputs.teams[var.team]
+      if try(contains(keys(workspace_data.outputs.teams), var.team), false)
+    ][0],
+    null
   ) : null
 
   # Extract team key from team variable

@@ -1,4 +1,4 @@
-# OpenTofu Core Child Module Helpers
+# OpenTofu Core Root Module Helpers
 
 locals {
   # The regex is used to parse the workspace name into its components, the components are used to set the region, zone, and environment variables.
@@ -11,10 +11,6 @@ locals {
   # us-east1-a-sandbox -> region = us-east1, zone = a, environment = sandbox
   # us-east1-a-foo-sandbox -> region = us-east1, zone = a, system = foo, environment = sandbox
 
-  environment_regex = "-(non-production|sandbox|production)$"
-  region_regex      = "^(us-[a-z]+\\d+)"
-  zone_regex        = "^us-[a-z]+\\d+-([abcd])"
-
   env = local.environment != null ? lookup(local.env_map, local.environment, "none") : null
 
   env_map = {
@@ -24,6 +20,8 @@ locals {
   }
 
   environment = local.parsed_workspace.environment
+
+  environment_regex = "-(non-production|sandbox|production)$"
 
   parsed_workspace = (
     local.workspace == "default" ?
@@ -38,14 +36,24 @@ locals {
     {
       environment = try(regex(local.environment_regex, local.workspace)[0], null)
       region      = try(regex(local.region_regex, local.workspace)[0], null)
-      zone        = try(regex(local.zone_regex, local.workspace)[0], null)
+      zone        = try(regex(local.zone_regex, local.workspace)[1], null)
     }
   )
 
   region = local.parsed_workspace.region
 
+  # Google Cloud region regex - supports US and Europe regions
+  # US regions: us-central1, us-east1, us-east4, us-west1, us-west2, us-west3, us-west4
+  # Europe regions: europe-central2, europe-north1, europe-southwest1, europe-west1, europe-west2, europe-west3, europe-west4, europe-west6, europe-west8, europe-west9, europe-west10, europe-west12
+  # To add other regions: extend the regex pattern below
+  region_regex = "^(us-[a-z]+\\d+|europe-[a-z]+\\d+)"
+
+  # Google Cloud zone regex - supports all available zones (a, b, c, d, e, f)
+  zone_regex = "^(us-[a-z]+\\d+|europe-[a-z]+\\d+)-([abcdef])"
+
   workspace = var.workspace != null ? var.workspace : terraform.workspace
-  zone      = local.parsed_workspace.zone
+
+  zone = local.parsed_workspace.zone
 }
 
 output "env" {

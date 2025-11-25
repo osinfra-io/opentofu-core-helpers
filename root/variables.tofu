@@ -21,6 +21,12 @@ variable "data_classification" {
   }
 }
 
+variable "logos_workspaces" {
+  description = "List of logos workspace names to read remote state from for team data aggregation. When provided, enables logos integration features including team data lookup, project naming, and environment folder IDs. Example: ['corpus-main-production', 'logos-main-production']"
+  type        = list(string)
+  default     = null
+}
+
 variable "repository" {
   description = "The repository name containing only lowercase alphanumeric characters or hyphens"
   type        = string
@@ -29,6 +35,13 @@ variable "repository" {
     condition     = can(regex("^[a-z0-9-]+$", var.repository))
     error_message = "The repository name must consist entirely of lowercase alphanumeric characters or hyphens"
   }
+}
+
+variable "state_kms_encryption_key" {
+  description = "The KMS encryption key for accessing encrypted GCS state files. Required when logos_workspaces is provided and state files are encrypted."
+  type        = string
+  default     = null
+  sensitive   = true
 }
 
 variable "team" {
